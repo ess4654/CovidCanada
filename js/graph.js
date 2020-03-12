@@ -140,6 +140,42 @@ function cumulativeAdd(data)
 	return data;
 }
 
+function monthify(data, max)
+{
+	var keys = Object.keys(data);
+	var temp = {};
+	for(var i = 0; i<keys.length; i++)
+	{
+		var date = new Date(keys[i]).toLocaleDateString('en-US', {month:'long'});
+		if(temp[date] == null)
+			temp[date] = data[keys[i]];
+		else {
+			if(max)
+				temp[date] = Math.max(data[keys[i]], temp[date]);
+			else
+				temp[date] += data[keys[i]];
+		}
+	}
+	return temp;
+}
+
+function dayify(data)
+{
+	var keys = Object.keys(data);
+	var temp = {};
+	var pos = keys[0];
+	
+	for(var x = 0; x<(moment(moment(keys[keys.length-1]).diff(moment(keys[0]), "days"))+1); x++)
+	{
+		if(data[pos] == undefined)
+			temp[pos] = 0;
+		else
+			temp[pos] = data[pos];
+		pos = moment(pos).add(1, "Day").format("MMMM D, YYYY").toString();
+	}
+	return temp;
+}
+
 function weekify(data, sum)
 {
 	var keys = Object.keys(data);
