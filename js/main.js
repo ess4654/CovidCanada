@@ -186,8 +186,6 @@
 		$($(".flex-control-nav.flex-control-paging a")[0]).html("<img src='img/pie-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(0);'/>");
 		$($(".flex-control-nav.flex-control-paging a")[1]).html("<img src='img/bar-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(1);'/>");
 		$($(".flex-control-nav.flex-control-paging a")[2]).html("<img src='img/line-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(2);'/>");
-	
-		$("link[rel='shortcut icon']").attr("href", "favicon.ico");
 	});
 
 }());
