@@ -312,6 +312,7 @@ function createChart(data, time)
 	        }]
 	    },
 	    options: {
+	    	
 	    	legend: {
 	            labels: {
 	                fontColor: 'rgba(225, 225, 225, 0.2)',

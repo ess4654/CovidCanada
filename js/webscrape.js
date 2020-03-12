@@ -38,6 +38,7 @@ function parseData(data, callback)
 
 function contains(string, find)
 {
+	if(string == undefined || string == null) return -1;
 	for(var i = 0; i<find.length; i++)
 	{
 		if(string.includes(find[i]))
@@ -125,16 +126,19 @@ function getProvinces(data)
 	var list = {};
 	pos = 0;
 	//find start of province list
-	while(!contains(data[pos], provinceList)) {
+	for(var y = 0; y<data.length; y++) {
+		if(contains(data[pos], provinceList)) break;
 		pos++;
 	}
 	pos--;
 	var num = 0;
-	while(data[pos] != "")
+	while( (data[pos] != "" || data[pos] != "|-") && pos<data.length )
 	{
+		if(data[pos] == "|-") break;
 		var p = contains(data[pos], provinceList);
 		if(p === 0 || p) {
-			list[num] = {"code":provinceList[p]};
+			if(list[num] == null)
+				list[num] = {"code":provinceList[p]};
 			num++;
 		}		
 		pos++;
