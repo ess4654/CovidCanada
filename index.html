@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Web Graph to show live updates on cases of the Covid-19 Outbreak in Canada." />
+		<meta name="author" content="Evan Svendsen" />
+		<meta name="keywords" content="covid-19, canada, who" />
+
+		<title>Covid Canada</title>
+
+		<!-- Facebook and Twitter integration -->
+		<meta property="og:title" content=""/>
+		<meta property="og:image" content=""/>
+		<meta property="og:url" content=""/>
+		<meta property="og:site_name" content=""/>
+		<meta property="og:description" content=""/>
+		<meta name="twitter:title" content="" />
+		<meta name="twitter:image" content="" />
+		<meta name="twitter:url" content="" />
+		<meta name="twitter:card" content="" />
+
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<link rel="shortcut icon" href="favicon.ico">
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+		<!-- Animate.css -->
+		<link rel="stylesheet" href="css/animate.css">
+		<!-- Icomoon Icon Fonts-->
+		<link rel="stylesheet" href="css/icomoon.css">
+		<!-- Bootstrap  -->
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<!-- Flexslider  -->
+		<link rel="stylesheet" href="css/flexslider.css">
+		<!-- Theme style  -->
+		<link rel="stylesheet" href="css/style.css">
+
+		<!-- Modernizr JS -->
+		<script src="js/modernizr-2.6.2.min.js"></script>
+		<!-- FOR IE9 below -->
+		<!--[if lt IE 9]>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- jQuery -->
+		<script src="js/jquery.min.js"></script>
+		<!-- jQuery Easing -->
+		<script src="js/jquery.easing.1.3.js"></script>
+		<!-- Bootstrap -->
+		<script src="js/bootstrap.min.js"></script>
+		<!-- Waypoints -->
+		<script src="js/jquery.waypoints.min.js"></script>
+		<!-- Flexslider -->
+		<script src="js/jquery.flexslider-min.js"></script>
+
+		<script type="text/javascript" src="js/graph.js"></script>
+		<script type="text/javascript" src="js/webscrape.js"></script>
+
+		<!-- MAIN JS -->
+		<script src="js/main.js"></script>
+	</head>
+	<body>
+	<div id="fh5co-page">
+
+		<!-- LEFT PANEL -->
+		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
+
+			<h1 id="fh5co-logo"><a href="index.html">COVID CANADA</a><img src="./img/virus-icon.png" /></h1>
+			<nav id="fh5co-main-menu" role="navigation">
+				<ul>
+					<li><a id="CA" href="javascript:void(0)" onclick="GetLocation('CA');">Canada</a></li>
+					<li><a id="BC" href="javascript:void(0)" onclick="GetLocation('BC');">British Columbia</a></li>
+					<li><a id="AB" href="javascript:void(0)" onclick="GetLocation('AB');">Alberta</a></li>
+					<li><a id="SK" href="javascript:void(0)" onclick="GetLocation('SK');">Saskatchewan</a></li>
+					<li><a id="MB" href="javascript:void(0)" onclick="GetLocation('MB');">Manitoba</a></li>
+					<li><a id="ON" href="javascript:void(0)" onclick="GetLocation('ON');">Ontario</a></li>
+					<li><a id="QC" href="javascript:void(0)" onclick="GetLocation('QC');">Quebec</a></li>
+					<li><a id="NB" href="javascript:void(0)" onclick="GetLocation('NB');">New Brunswick</a></li>
+					<li><a id="PEI" href="javascript:void(0)" onclick="GetLocation('PEI');">Prince Edward Island</a></li>
+					<li><a id="NS" href="javascript:void(0)" onclick="GetLocation('NS');">Nova Scotia</a></li>
+					<li><a id="NF" href="javascript:void(0)" onclick="GetLocation('NF');">New Found Land & Labrador</a></li>
+					<li><a id="NV" href="javascript:void(0)" onclick="GetLocation('NV');">Nunavut</a></li>
+					<li><a id="NT" href="javascript:void(0)" onclick="GetLocation('NT');">Northwest Territories</a></li>
+					<li><a id="YU" href="javascript:void(0)" onclick="GetLocation('YU');">Yukon</a></li>
+				</ul>
+
+				<div class="fh5co-footer">
+					<p><small>&copy; 2020 Evan Svendsen. All Rights Reserved. Data Pulled Live from <a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Canada">Wikipedia</a>.</span></small></p>
+					<ul>
+						<li><a href="https://www.facebook.com/evan.svendsen.3"><i class="icon-facebook2"></i></a></li>
+						<li><a href="https://www.twitter.com/drakebatesmrd66"><i class="icon-twitter2"></i></a></li>
+						<li><a href="https://www.instagram.com/jobless.coder"><i class="icon-instagram"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/evan-svendsen"><i class="icon-linkedin2"></i></a></li>
+					</ul>
+				</div>
+
+			</nav>
+		</aside>
+
+		<!-- MAIN PAGE -->
+		<div id="fh5co-main">
+			<aside id="fh5co-hero" class="js-fullheight">
+				<div class="flexslider js-fullheight">
+					<ul class="slides">
+				   	<li style="background-image: url(img/img_bg_1.jpg); height:640px;">
+				   		<div class="overlay"></div>
+				   		<div class="container-fluid">
+				   			<div class="row">
+					   			<div class="col text-center js-fullheight slider-text">
+					   				<div class="slider-text-inner">
+					   					Hello
+					   				</div>
+					   			</div>
+					   		</div>
+				   		</div>
+				   	</li>
+				   	<li style="background-image: url(img/img_bg_2.jpg); height:640px;">
+				   		<div class="overlay"></div>
+				   		<div class="container-fluid">
+				   			<div class="row">
+					   			<div class="col text-center js-fullheight slider-text">
+					   				<div class="slider-text-inner">
+					   					Hello
+					   				</div>
+					   			</div>
+					   		</div>
+				   		</div>
+				   	</li>
+				   	<li style="background-image: url(img/img_bg_3.jpg); height:640px;">
+				   		<div class="overlay"></div>
+				   		<div class="container-fluid">
+				   			<div class="row">
+					   			<div class="col text-center js-fullheight slider-text">
+					   				<div class="slider-text-inner">
+					   					Hello
+					   				</div>
+					   			</div>
+					   		</div>
+				   		</div>
+				   	</li>
+				  	</ul>
+			  	</div>
+			</aside>
+
+			<!-- WHO INFO -->
+			<div id="get-in-touch">
+				<div class="fh5co-narrow-content">
+					<div class="row">
+						<div class="col-md-4 animate-box" data-animate-effect="fadeInLeft">
+							<h1 class="fh5co-heading-colored">WORLD HEALTH ORGANIZATION</h1>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+							<p class="fh5co-lead">On March 11, 2019 the WHO declared Covid-19 to be a pandemic. For more info including live news updates visit the WHO Website.</p>
+							<p><a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" class="btn btn-primary">Learn More</a></p>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="WikiGet"></div>
+	</body>
+</html>
