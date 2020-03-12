@@ -57,6 +57,8 @@
 		<script src="js/jquery.waypoints.min.js"></script>
 		<!-- Flexslider -->
 		<script src="js/jquery.flexslider-min.js"></script>
+		<!-- Chart JS -->
+		<script src="js/chart.min.js"></script>
 
 		<script type="text/javascript" src="js/graph.js"></script>
 		<script type="text/javascript" src="js/webscrape.js"></script>
@@ -108,37 +110,37 @@
 			<aside id="fh5co-hero" class="js-fullheight">
 				<div class="flexslider js-fullheight">
 					<ul class="slides">
-				   	<li style="background-image: url(img/img_bg_1.jpg); height:640px;">
+				   	<li style="background-image: url(img/img_bg_1.jpg); min-height:640px;">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
 					   			<div class="col text-center js-fullheight slider-text">
 					   				<div class="slider-text-inner">
-					   					Hello
+					   					<div id="pie-chart-body"></div>
 					   				</div>
 					   			</div>
 					   		</div>
 				   		</div>
 				   	</li>
-				   	<li style="background-image: url(img/img_bg_2.jpg); height:640px;">
+				   	<li style="background-image: url(img/img_bg_2.jpg); min-height:640px;">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
 					   			<div class="col text-center js-fullheight slider-text">
 					   				<div class="slider-text-inner">
-					   					Hello
+					   					<div id="bar-chart-body"></div>
 					   				</div>
 					   			</div>
 					   		</div>
 				   		</div>
 				   	</li>
-				   	<li style="background-image: url(img/img_bg_3.jpg); height:640px;">
+				   	<li style="background-image: url(img/img_bg_3.jpg); min-height:640px;">
 				   		<div class="overlay"></div>
 				   		<div class="container-fluid">
 				   			<div class="row">
 					   			<div class="col text-center js-fullheight slider-text">
 					   				<div class="slider-text-inner">
-					   					Hello
+					   					<div id="line-chart-body"></div>
 					   				</div>
 					   			</div>
 					   		</div>
@@ -147,6 +149,11 @@
 				  	</ul>
 			  	</div>
 			</aside>
+
+			<div class="chart-controls">
+				<li onclick="perDayGraph()">Per Day</li>
+				<li class="active" onclick="totalGraph()">Total</li>
+			</div>
 
 			<!-- WHO INFO -->
 			<div id="get-in-touch">

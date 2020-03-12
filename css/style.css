@@ -1016,10 +1016,10 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   text-decoration: none;
 }
 .fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
-  background: #000;
+  background: #118baf;
 }
 .fh5co-nav-toggle.dark.active i::before, .fh5co-nav-toggle.dark.active i::after {
-  background: #000;
+  background: #118baf;
 }
 .fh5co-nav-toggle:hover, .fh5co-nav-toggle:focus, .fh5co-nav-toggle:active {
   outline: none;
@@ -1033,18 +1033,18 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   *display: inline;
   width: 30px;
   height: 2px;
-  color: #000;
+  color: #118baf;
   font: bold 14px/.4 Helvetica;
   text-transform: uppercase;
   text-indent: -55px;
-  background: #000;
+  background: #118baf;
   transition: all .2s ease-out;
 }
 .fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
   content: '';
   width: 30px;
   height: 2px;
-  background: #000;
+  background: #118baf;
   position: absolute;
   left: 0;
   -webkit-transition: 0.2s;
@@ -1054,11 +1054,11 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 .fh5co-nav-toggle.dark i {
   position: relative;
   color: #000;
-  background: #000;
+  background: #118baf;
   transition: all .2s ease-out;
 }
 .fh5co-nav-toggle.dark i::before, .fh5co-nav-toggle.dark i::after {
-  background: #000;
+  background: #118baf;
   -webkit-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
@@ -1162,6 +1162,44 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
 
 .js .animate-box {
   opacity: 0;
+}
+
+.chart {
+  max-height: 720px!important;
+  max-width: 1020px!important;
+}
+
+.chart-controls {
+  bottom: 20px;
+  z-index: 1000;
+  right: 20px;
+  float: right;
+  width: auto;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 65px;
+}
+
+.chart-controls li.active {
+  box-shadow: 0px 0px 0px 2px #228896;
+  background: transparent;
+}
+
+.chart-controls li {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+  width: 100%;
+  height: 30px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  padding-top: 4px;
+  font-weight: 430;
 }
 
 /*# sourceMappingURL=style.css.map */
