@@ -154,8 +154,6 @@
 		sliderMain();
 		document.getElementById('CA').click();
 
-
-		
 		$($(".flex-control-nav.flex-control-paging a")[0]).attr("data-toggle", "tooltip");
 		$($(".flex-control-nav.flex-control-paging a")[1]).attr("data-toggle", "tooltip");
 		$($(".flex-control-nav.flex-control-paging a")[2]).attr("data-toggle", "tooltip");

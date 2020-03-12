@@ -161,21 +161,23 @@ function weekify(data, sum)
 	{
 		var end = parseInt(i/7)*7 + 6;
 		end = (end >= keys.length) ? (keys.length-1):end;
-		if(weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] == null) {
+		var start = new Date(keys[parseInt(i/7)*7]).toLocaleDateString('en-US', {month:'short', day:'numeric'});
+		var displayEnd = new Date(keys[end]).toLocaleDateString('en-US', {month:'short', day:'numeric'});
+		if(weekly[`${start} - ${displayEnd}`] == null) {
 			if(data[keys[i]] == null)
-				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = 0;
+				weekly[`${start} - ${displayEnd}`] = 0;
 			else {
-				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = Math.max(data[keys[i]], -1);
+				weekly[`${start} - ${displayEnd}`] = Math.max(data[keys[i]], -1);
 			}
 		}
 		else {
 			if(data[keys[i]] == null)
-				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] += 0;
+				weekly[`${start} - ${displayEnd}`] += 0;
 			else {
 				if(sum)
-					weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] += data[keys[i]];
+					weekly[`${start} - ${displayEnd}`] += data[keys[i]];
 				else
-					weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = Math.max(data[keys[i]], weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`]);
+					weekly[`${start} - ${displayEnd}`] = Math.max(data[keys[i]], weekly[`${start} - ${displayEnd}`]);
 			}
 		}
 	}
