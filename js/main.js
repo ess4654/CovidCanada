@@ -160,9 +160,9 @@
 		$($(".flex-control-nav.flex-control-paging a")[1]).attr("data-toggle", "tooltip");
 		$($(".flex-control-nav.flex-control-paging a")[2]).attr("data-toggle", "tooltip");
 
-		$($(".flex-control-nav.flex-control-paging a")[0]).attr("title", "Pie Chart");
-		$($(".flex-control-nav.flex-control-paging a")[1]).attr("title", "Bar Chart");
-		$($(".flex-control-nav.flex-control-paging a")[2]).attr("title", "Line Graph");
+		$($(".flex-control-nav.flex-control-paging a")[0]).attr("title", "Weekly Stats Pie Chart");
+		$($(".flex-control-nav.flex-control-paging a")[1]).attr("title", "Daily Stats Bar Chart");
+		$($(".flex-control-nav.flex-control-paging a")[2]).attr("title", "Daily Stats Line Graph");
 		$('[data-toggle="tooltip"]').tooltip({trigger: 'manual'});
 		
 		$($(".flex-control-nav.flex-control-paging a")[0]).hover(function() {

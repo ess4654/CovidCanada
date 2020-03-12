@@ -140,6 +140,49 @@ function cumulativeAdd(data)
 	return data;
 }
 
+function weekify(data, sum)
+{
+	var keys = Object.keys(data);
+	var temp = {};
+	var pos = keys[0];
+	
+	for(var x = 0; x<(moment(moment(keys[keys.length-1]).diff(moment(keys[0]), "days"))+1); x++)
+	{
+		if(data[pos] == undefined)
+			temp[pos] = 0;
+		else
+			temp[pos] = data[pos];
+		pos = moment(pos).add(1, "Day").format("MMMM D, YYYY").toString();
+	}
+
+	keys = Object.keys(temp);
+	var weekly = {};
+	for(var i = 0; i<keys.length; i++)
+	{
+		var end = parseInt(i/7)*7 + 6;
+		end = (end >= keys.length) ? (keys.length-1):end;
+		if(weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] == null) {
+			if(data[keys[i]] == null)
+				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = 0;
+			else {
+				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = Math.max(data[keys[i]], -1);
+			}
+		}
+		else {
+			if(data[keys[i]] == null)
+				weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] += 0;
+			else {
+				if(sum)
+					weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] += data[keys[i]];
+				else
+					weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`] = Math.max(data[keys[i]], weekly[`${keys[parseInt(i/7)*7]} - ${keys[end]}`]);
+			}
+		}
+	}
+
+	return weekly;
+}
+
 function createChart(data, time)
 {
 	$("#pie-chart-body").html('<canvas class="chart" id="pie-chart" width="100%" height="100%"></canvas>');
@@ -268,6 +311,9 @@ function createChart(data, time)
 	});
 
 	//Create Pie Chart
+	data = weekify(data, ((time == "day")?true:false));
+	dates = Object.keys(data);
+	val = Object.values(data);
 	bg_color = BGColor(dates, true);
 	outline_color = OutlineColor(dates, true);
 	var ctxPie = document.getElementById('pie-chart').getContext('2d');
@@ -326,6 +372,12 @@ function updateGraph(data)
 
 function swapview(pos)
 {
+	if(pos == 0)
+	{
+		$($(".chart-controls li")[0]).html("Per Week");
+	} else {
+		$($(".chart-controls li")[0]).html("Per Day");
+	}
 	$($(".flex-control-nav.flex-control-paging a")[pos]).click();
 }
 
