@@ -78,10 +78,11 @@ function parseKeypair(data)
 		var keys = Object.keys(data[i].cases);
 		for(var j = 0; j<keys.length; j++)
 		{
-			if(keypair[keys[j]] == null)
-				keypair[keys[j]] = data[i].cases[keys[j]];
+			var date = keys[j];
+			if(keypair[date] == null)
+				keypair[date] = data[i].cases[date];
 			else
-				keypair[keys[j]] += data[i].cases[keys[j]];
+				keypair[date] += data[i].cases[date];
 		}
 	}
 	return keypair;
@@ -159,6 +160,7 @@ function createChart(data, time)
 	}
 
 	var dates = Object.keys(data);
+	$(".last-updated").html("Last Updated: "+dates[dates.length-1]);
 	var val = Object.values(data);
 	var bg_color = BGColor(dates);
 	var outline_color = OutlineColor(dates);
@@ -191,6 +193,7 @@ function createChart(data, time)
 					  color: "rgba(50, 50, 50, 0.5)"
 					},
 	                ticks: {
+	                	precision: 0,
 	                    beginAtZero: true,
 	                    fontColor: 'rgba(225, 225, 225, 1.0)',
 	                    fontSize: 16
@@ -203,7 +206,10 @@ function createChart(data, time)
 					},
 	                ticks: {
 	                    fontColor: 'rgba(225, 225, 225, 1.0)',
-	                    fontSize: 14
+	                    fontSize: 14,
+	                    callback: function(value) { 
+					        return new Date(value).toLocaleDateString('en-US', {month:'short', day:'numeric'})
+					    }
 	                }
 	            }]
 	        }
@@ -238,6 +244,7 @@ function createChart(data, time)
 					  color: "rgba(50, 50, 50, 0.5)"
 					},
 	                ticks: {
+	                	precision: 0,
 	                    beginAtZero: true,
 	                    fontColor: 'rgba(225, 225, 225, 1.0)',
 	                    fontSize: 16
@@ -250,7 +257,10 @@ function createChart(data, time)
 					},
 	                ticks: {
 	                    fontColor: 'rgba(225, 225, 225, 1.0)',
-	                    fontSize: 14
+	                    fontSize: 14,
+	                    callback: function(value) { 
+					        return new Date(value).toLocaleDateString('en-US', {month:'short', day:'numeric'})
+					    }
 	                }
 	            }]
 	        }
@@ -297,6 +307,11 @@ function createChart(data, time)
 	            	display: false,
 	            	gridLines: {
 					  display: false
+					},
+					ticks: {
+						callback: function(value) { 
+					        return new Date(value).toLocaleDateString('en-US', {month:'short', day:'numeric'})
+					    }
 					}
 	            }]
 	        }

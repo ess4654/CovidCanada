@@ -154,6 +154,37 @@
 		sliderMain();
 		document.getElementById('CA').click();
 
+
+		
+		$($(".flex-control-nav.flex-control-paging a")[0]).attr("data-toggle", "tooltip");
+		$($(".flex-control-nav.flex-control-paging a")[1]).attr("data-toggle", "tooltip");
+		$($(".flex-control-nav.flex-control-paging a")[2]).attr("data-toggle", "tooltip");
+
+		$($(".flex-control-nav.flex-control-paging a")[0]).attr("title", "Pie Chart");
+		$($(".flex-control-nav.flex-control-paging a")[1]).attr("title", "Bar Chart");
+		$($(".flex-control-nav.flex-control-paging a")[2]).attr("title", "Line Graph");
+		$('[data-toggle="tooltip"]').tooltip({trigger: 'manual'});
+		
+		$($(".flex-control-nav.flex-control-paging a")[0]).hover(function() {
+			$($(".flex-control-nav.flex-control-paging a")[0]).tooltip("show");
+		});
+		$($(".flex-control-nav.flex-control-paging a")[0]).mouseleave(function() {
+			$($(".flex-control-nav.flex-control-paging a")[0]).tooltip("hide");
+		});
+		$($(".flex-control-nav.flex-control-paging a")[1]).hover(function() {
+			$($(".flex-control-nav.flex-control-paging a")[1]).tooltip("show");
+		});
+		$($(".flex-control-nav.flex-control-paging a")[1]).mouseleave(function() {
+			$($(".flex-control-nav.flex-control-paging a")[1]).tooltip("hide");
+		});
+		$($(".flex-control-nav.flex-control-paging a")[2]).hover(function() {
+			$($(".flex-control-nav.flex-control-paging a")[2]).tooltip("show");
+		});
+		$($(".flex-control-nav.flex-control-paging a")[2]).mouseleave(function() {
+			$($(".flex-control-nav.flex-control-paging a")[2]).tooltip("hide");
+		});
+
+
 		$($(".flex-control-nav.flex-control-paging a")[0]).html("<img src='img/pie-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(0);'/>");
 		$($(".flex-control-nav.flex-control-paging a")[1]).html("<img src='img/bar-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(1);'/>");
 		$($(".flex-control-nav.flex-control-paging a")[2]).html("<img src='img/line-chart.png' style='position:absolute; width: 40px; height: 40px; right:15px; margin-top:10px; z-index:0;' onclick='swapview(2);'/>");
