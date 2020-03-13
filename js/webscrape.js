@@ -153,6 +153,5 @@ function WikiGet(action, callback)
 
 	var scriptTag = document.createElement("script"); // Dynamically create a "script" tag
 	scriptTag.src = url_request; // Point to the query string
-
 	$("#WikiGet").html(scriptTag);
 }

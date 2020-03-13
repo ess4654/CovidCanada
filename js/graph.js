@@ -235,10 +235,18 @@ function createChart(data, time)
 	var Location = (data.length > 1) ? "Canada":ProvinceNames[data[0].code];
 	data = parseKeypair(data);
 
+	var totalCountCases;
 	if(time == 0)
 	{
 		data = cumulativeAdd(data);
+		var key = Object.keys(data);
+		totalCountCases = data[key[key.length-1]];
+	} else if(time == 'day') {
+		var data2 = cumulativeAdd(data);
+		var key = Object.keys(data2);
+		totalCountCases = data2[key[key.length-1]];
 	}
+	$(".total-cases").html(`Total Cases: ${totalCountCases}`);
 
 	var dates = Object.keys(data);
 	$(".last-updated").html("Last Updated: "+dates[dates.length-1]);
