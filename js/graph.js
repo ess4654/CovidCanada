@@ -60,8 +60,12 @@ function diplayGraph(data)
 		$($(".flex-control-nav.flex-control-paging a")[1]).css("display", "none");
 		$($(".flex-control-nav.flex-control-paging a")[2]).css("display", "none");
 		
+		$(".right-panel").css("display","none");
+
 		return;
 	}
+
+	$(".right-panel").css("display","initial");
 
 	//Set the view to the first line chart
 	$(".flex-control-nav.flex-control-paging a")[1].click();
