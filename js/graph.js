@@ -1,5 +1,7 @@
 var caseData;
 var DATA;
+var T;
+var FUTURE;
 var ProvinceNames = {
 	"AB":"Alberta",
 	"BC":"British Columbia",
@@ -67,7 +69,8 @@ function diplayGraph(data)
 	DATA = data;
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[1]).addClass("active");
-	createChart(data, 0);
+	T = 0;
+	createChart(data, 0, FUTURE);
 }
 
 function parseKeypair(data)
@@ -86,6 +89,20 @@ function parseKeypair(data)
 		}
 	}
 	return keypair;
+}
+
+function colorCorrectBG(color_array, C)
+{
+	for(var x = color_array.length-C; x<color_array.length; x++)
+		color_array[x] = 'rgba(200, 200, 200, 0.2)';
+	return color_array;
+}
+
+function colorCorrectOutline(color_array, C)
+{
+	for(var x = color_array.length-C; x<color_array.length; x++)
+		color_array[x] = 'rgba(200, 200, 200, 1)';
+	return color_array;
 }
 
 function OutlineColor(array, alternate)
@@ -221,7 +238,7 @@ function weekify(data, sum)
 	return weekly;
 }
 
-function createChart(data, time)
+function createChart(data, time, future)
 {
 	$("#pie-chart-body").html('<canvas class="chart" id="pie-chart" width="100%" height="100%"></canvas>');
 	$("#bar-chart-body").html('<canvas class="chart" id="bar-chart" width="100%" height="100%"></canvas>');
@@ -234,6 +251,20 @@ function createChart(data, time)
 	var timeDisplay = (time == 0) ? "Total":"Per Day";
 	var Location = (data.length > 1) ? "Canada":ProvinceNames[data[0].code];
 	data = parseKeypair(data);
+	var OGLength = Object.keys(data).length;
+
+	var C = 0;
+	if(future != null)
+	{
+		var DataCopy = dayify(data);
+		var A = Object.keys(data).length;
+		var coordinates = graphify(DataCopy);
+		var line = findLineByLeastSquares(coordinates[0], coordinates[1]);
+		data = addFuture(data, line,[future[0],future[1]]);
+		var B = Object.keys(data).length;
+		C = B-A;
+	}
+	var data2 = data;
 
 	var totalCountCases;
 	if(time == 0)
@@ -241,14 +272,19 @@ function createChart(data, time)
 		data = cumulativeAdd(data);
 		var key = Object.keys(data);
 		totalCountCases = data[key[key.length-1]];
-		$(".total-cases").html(`Total Cases: ${totalCountCases}`);
+		$(".total-cases").html(`Total ${(future!=null)?("Estimated Cases "):("")}Cases${(future!=null)?(` in ${future[0]} ${future[1]}${(future[0]>1)?("s"):("")} `):("")}: ${totalCountCases}`);
 	}
 	
 	var dates = Object.keys(data);
-	$(".last-updated").html("Last Updated: "+dates[dates.length-1]);
+	$(".last-updated").html("Last Updated: "+dates[OGLength-1]);
 	var val = Object.values(data);
 	var bg_color = BGColor(dates);
 	var outline_color = OutlineColor(dates);
+	if(future != null)
+	{
+		bg_color = colorCorrectBG(bg_color, C);
+		outline_color = colorCorrectOutline(outline_color, C);
+	}
 
 	//Create Bar Chart
 	var ctxBar = document.getElementById('bar-chart').getContext('2d');
@@ -316,10 +352,9 @@ function createChart(data, time)
 	        }]
 	    },
 	    options: {
-	    	
 	    	legend: {
 	            labels: {
-	                fontColor: 'rgba(225, 225, 225, 0.2)',
+	                fontColor: 'rgba(225, 225, 225, 0.25)',
 	                fontSize: 18
 	            }
 	        },
@@ -354,12 +389,18 @@ function createChart(data, time)
 	});
 
 	//Create Pie Chart
-	var data2 = data;
-	data = weekify(data, ((time == "day")?true:false));
+	data = weekify(data, (time == "day"));
 	dates = Object.keys(data);
 	val = Object.values(data);
 	bg_color = BGColor(dates, true);
 	outline_color = OutlineColor(dates, true);
+
+	if(future != null)
+	{
+		bg_color = colorCorrectBG(bg_color, parseInt(C/7));
+		outline_color = colorCorrectOutline(outline_color, parseInt(C/7));
+	}
+
 	var ctxPie = document.getElementById('pie-chart').getContext('2d');
 	var chart = new Chart(ctxPie, {
 	    type: 'pie',
@@ -413,7 +454,7 @@ function createChart(data, time)
 		totalCountCases = cumulativeAdd(data2);
 		var key2 = Object.keys(totalCountCases);
 		totalCountCases = totalCountCases[key2[key2.length-1]];
-		$(".total-cases").html(`Total Cases: ${totalCountCases}`);
+		$(".total-cases").html(`Total ${(future!=null)?("Estimated Cases "):("")}Cases${(future!=null)?(` in ${future[0]} ${future[1]}${(future[0]>1)?("s"):("")} `):("")}: ${totalCountCases}`);
 	}
 }
 
@@ -437,14 +478,16 @@ function perDayGraph()
 {
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[0]).addClass("active");
-	createChart(DATA, "day");
+	T = "day";
+	createChart(DATA, "day", FUTURE);
 }
 
 function totalGraph()
 {
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[1]).addClass("active");
-	createChart(DATA, 0);
+	T = 0;
+	createChart(DATA, 0, FUTURE);
 }
 
 function Estimate(time)
@@ -452,11 +495,16 @@ function Estimate(time)
 	if(time == "None")
 	{
 		$(".projection-btn .btn").html(time);
+		FUTURE = null;
 		diplayGraph(DATA);
 		return;
 	}
 
-	var displayTime = time.split("-");
+	var future = time.split("-");
+	var displayTime = future;
 	displayTime = `${displayTime[0]} ${displayTime[1]}${(displayTime[0] > 1)?"s":""}`;
 	$(".projection-btn .btn").html(displayTime);
+
+	FUTURE = future;
+	createChart(DATA, T, future);
 }

@@ -1196,9 +1196,6 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   .chart-controls {
     margin-top: unset;
   }
-  .flex-control-nav.flex-control-paging {
-    margin-bottom: unset;
-  }
 }
 @media(max-width: 1160px) {
   .chart {
@@ -1211,9 +1208,6 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   }
   .chart-controls {
     margin-top: -45px;
-  }
-  .flex-control-nav.flex-control-paging {
-    margin-bottom: 100px;
   }
   #fh5co-hero {
     height: 580px!important;
