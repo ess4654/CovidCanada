@@ -87,23 +87,23 @@
 		<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
 		<aside id="fh5co-aside" role="complementary" class="border js-fullheight">
 
-			<h1 id="fh5co-logo"><a href="index.html">COVID CANADA</a><img src="./img/virus-icon.png" /></h1>
+			<h1 id="fh5co-logo"><a href="index.html">COVID CANADA<img src="./img/virus-icon.png" /></a></h1>
 			<nav id="fh5co-main-menu" role="navigation">
 				<ul>
-					<li><a id="CA" href="javascript:void(0)" onclick="GetLocation('CA');">Canada</a></li>
-					<li><a id="BC" href="javascript:void(0)" onclick="GetLocation('BC');">British Columbia</a></li>
-					<li><a id="AB" href="javascript:void(0)" onclick="GetLocation('AB');">Alberta</a></li>
-					<li><a id="SK" href="javascript:void(0)" onclick="GetLocation('SK');">Saskatchewan</a></li>
-					<li><a id="MB" href="javascript:void(0)" onclick="GetLocation('MB');">Manitoba</a></li>
-					<li><a id="ON" href="javascript:void(0)" onclick="GetLocation('ON');">Ontario</a></li>
-					<li><a id="QC" href="javascript:void(0)" onclick="GetLocation('QC');">Quebec</a></li>
-					<li><a id="NB" href="javascript:void(0)" onclick="GetLocation('NB');">New Brunswick</a></li>
-					<li><a id="PEI" href="javascript:void(0)" onclick="GetLocation('PEI');">Prince Edward Island</a></li>
-					<li><a id="NS" href="javascript:void(0)" onclick="GetLocation('NS');">Nova Scotia</a></li>
-					<li><a id="NF" href="javascript:void(0)" onclick="GetLocation('NF');">Newfoundland & Labrador</a></li>
-					<li><a id="NV" href="javascript:void(0)" onclick="GetLocation('NV');">Nunavut</a></li>
-					<li><a id="NT" href="javascript:void(0)" onclick="GetLocation('NT');">Northwest Territories</a></li>
-					<li><a id="YU" href="javascript:void(0)" onclick="GetLocation('YU');">Yukon</a></li>
+					<li><a id="CA" href="javascript:void(0);" onclick="GetLocation('CA');">Canada</a></li>
+					<li><a id="BC" href="javascript:void(0);" onclick="GetLocation('BC');">British Columbia</a></li>
+					<li><a id="AB" href="javascript:void(0);" onclick="GetLocation('AB');">Alberta</a></li>
+					<li><a id="SK" href="javascript:void(0);" onclick="GetLocation('SK');">Saskatchewan</a></li>
+					<li><a id="MB" href="javascript:void(0);" onclick="GetLocation('MB');">Manitoba</a></li>
+					<li><a id="ON" href="javascript:void(0);" onclick="GetLocation('ON');">Ontario</a></li>
+					<li><a id="QC" href="javascript:void(0);" onclick="GetLocation('QC');">Quebec</a></li>
+					<li><a id="NB" href="javascript:void(0);" onclick="GetLocation('NB');">New Brunswick</a></li>
+					<li><a id="PEI" href="javascript:void(0);" onclick="GetLocation('PEI');">Prince Edward Island</a></li>
+					<li><a id="NS" href="javascript:void(0);" onclick="GetLocation('NS');">Nova Scotia</a></li>
+					<li><a id="NF" href="javascript:void(0);" onclick="GetLocation('NF');">Newfoundland & Labrador</a></li>
+					<li><a id="NV" href="javascript:void(0);" onclick="GetLocation('NV');">Nunavut</a></li>
+					<li><a id="NT" href="javascript:void(0);" onclick="GetLocation('NT');">Northwest Territories</a></li>
+					<li><a id="YU" href="javascript:void(0);" onclick="GetLocation('YU');">Yukon</a></li>
 				</ul>
 
 				<div class="fh5co-footer">
@@ -166,31 +166,32 @@
 			</aside>
 
 			<div class="chart-controls">
-				<div class="chart-control-label total-cases" style="color:rgba(225,225,225,1.0);">Total Cases:</div>
-				<div class="chart-control-label last-updated" style="color:rgba(225,225,225,1.0);">Last Updated:</div>
+				<div class="chart-control-label total-cases">Total Cases:</div>
+				<div class="chart-control-label last-updated">Last Updated:</div>
 				<li onclick="perDayGraph()">Per Day</li>
 				<li class="active" onclick="totalGraph()">Total</li>
 
+				<div class="chart-control-label future">Estimate Future Outbreak</div>
 				<div class="btn-group projection-btn">
 					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						None
 					</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">None</a>
-						<a class="dropdown-item" href="#">1 Day</a>
-						<a class="dropdown-item" href="#">2 Days</a>
-						<a class="dropdown-item" href="#">3 Days</a>
-						<a class="dropdown-item" href="#">4 Days</a>
-						<a class="dropdown-item" href="#">5 Days</a>
-						<a class="dropdown-item" href="#">6 Days</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('None');">None</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('1-Day');">1 Day</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('2-Day');">2 Days</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('3-Day');">3 Days</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('4-Day');">4 Days</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('5-Day');">5 Days</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('6-Day');">6 Days</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">1 Week</a>
-						<a class="dropdown-item" href="#">2 Weeks</a>
-						<a class="dropdown-item" href="#">3 Weeks</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('1-Week');">1 Week</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('2-Week');">2 Weeks</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('3-Week');">3 Weeks</a>
 						<div class="dropdown-divider"></div>
-						<a class="dropdown-item" href="#">1 Month</a>
-						<a class="dropdown-item" href="#">2 Months</a>
-						<a class="dropdown-item" href="#">3 Months</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('1-Month');">1 Month</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('2-Month');">2 Months</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('3-Month');">3 Months</a>
 					</div>
 				</div>
 			</div>

@@ -241,13 +241,9 @@ function createChart(data, time)
 		data = cumulativeAdd(data);
 		var key = Object.keys(data);
 		totalCountCases = data[key[key.length-1]];
-	} else if(time == 'day') {
-		var data2 = cumulativeAdd(data);
-		var key = Object.keys(data2);
-		totalCountCases = data2[key[key.length-1]];
+		$(".total-cases").html(`Total Cases: ${totalCountCases}`);
 	}
-	$(".total-cases").html(`Total Cases: ${totalCountCases}`);
-
+	
 	var dates = Object.keys(data);
 	$(".last-updated").html("Last Updated: "+dates[dates.length-1]);
 	var val = Object.values(data);
@@ -358,6 +354,7 @@ function createChart(data, time)
 	});
 
 	//Create Pie Chart
+	var data2 = data;
 	data = weekify(data, ((time == "day")?true:false));
 	dates = Object.keys(data);
 	val = Object.values(data);
@@ -410,6 +407,14 @@ function createChart(data, time)
 	        }
 	    }
 	});
+
+	//Add total count statistic
+	if(time == 'day') {
+		totalCountCases = cumulativeAdd(data2);
+		var key2 = Object.keys(totalCountCases);
+		totalCountCases = totalCountCases[key2[key2.length-1]];
+		$(".total-cases").html(`Total Cases: ${totalCountCases}`);
+	}
 }
 
 function updateGraph(data)
@@ -440,4 +445,18 @@ function totalGraph()
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[1]).addClass("active");
 	createChart(DATA, 0);
+}
+
+function Estimate(time)
+{
+	if(time == "None")
+	{
+		$(".projection-btn .btn").html(time);
+		diplayGraph(DATA);
+		return;
+	}
+
+	var displayTime = time.split("-");
+	displayTime = `${displayTime[0]} ${displayTime[1]}${(displayTime[0] > 1)?"s":""}`;
+	$(".projection-btn .btn").html(displayTime);
 }

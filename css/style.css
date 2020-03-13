@@ -1294,14 +1294,30 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   font-size: 20px;
 }
 
-.projection-btn {
-  right: 0px;
-  margin-top: 50px;
+.chart-control-label {
+  color:rgba(225,225,225,1.0);
 }
+
+.chart-control-label.future {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.projection-btn {
+  right: -5px;
+  float: right;
+}
+
 .projection-btn .btn {
   border-radius: 10px;
   outline: none;
-  width: 125px;
+  width: auto;
+  min-width: 125px;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background: rgba(0,0,255,0.3);
 }
 
 /*# sourceMappingURL=style.css.map */
