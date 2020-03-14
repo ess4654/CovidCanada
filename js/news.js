@@ -3,7 +3,7 @@ var provinceByCode = {
 	"BC":{"CBC":["canada-britishcolumbia"]},
 	"SK":{"CBC":["canada-saskatchewan"]},
 	"MB":{"CBC":["canada-manitoba"]},
-	"ON":{"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury"]},
+	"ON":{"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury", "canada-windsor", "canada-thunderbay", "canada-london"]},
 	"QC":{"CBC":["canada-montreal"]},
 	"NB":{"CBC":["canada-newbrunswick"]},
 	"PE":{"CBC":["canada-pei"]},
