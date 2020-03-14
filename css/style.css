@@ -84,9 +84,8 @@ figure figcaption {
 
 #fh5co-page {
   width: 100%;
-  overflow: hidden scroll;
+  overflow: hidden;
   position: relative;
-  max-height: 56em;
 }
 
 #fh5co-aside {
@@ -102,7 +101,6 @@ figure figcaption {
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  max-height: 56em;
 }
 @media screen and (max-width: 1200px) {
   #fh5co-aside {
