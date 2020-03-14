@@ -15,7 +15,8 @@ var ProvinceNames = {
 	"NF":"New Found Land & Labrador",
 	"NV":"Nunavut",
 	"NT":"Northwest Territories",
-	"YU":"Yukon"
+	"YU":"Yukon",
+	"CA":"Canada"
 };
 
 

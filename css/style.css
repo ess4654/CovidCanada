@@ -271,13 +271,14 @@ figure figcaption {
   position: relative;
   width: 93%;
   margin: 0 auto;
-  padding: 4em 0;
+  padding: 4em 0 1em 0;
   clear: both;
+  z-index: 1;
 }
 @media screen and (max-width: 768px) {
   #fh5co-main .fh5co-narrow-content {
     width: 100%;
-    padding: 4em 1em;
+    padding: 4em 1em 1em 0;
   }
 }
 
@@ -298,6 +299,7 @@ figure figcaption {
   border: none;
   z-index: 1;
   margin-bottom: 0;
+  background: #F5F5F5;
 }
 #fh5co-hero .flexslider .slides {
   position: relative;
@@ -1196,6 +1198,9 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   .chart-controls {
     margin-top: unset;
   }
+  #fh5co-hero .flex-control-nav.flex-control-paging {
+    margin-bottom: unset;
+  }
 }
 @media(max-width: 1160px) {
   .chart {
@@ -1204,7 +1209,7 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   }
   .slides {
     height: 710px;
-    margin-top: -100px;
+    margin-top: 0;
   }
   .chart-controls {
     margin-top: -45px;
@@ -1215,6 +1220,9 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   }
   .flexslider.js-fullheight {
     height: 710px!important;
+  }
+  #fh5co-hero .flex-control-nav.flex-control-paging {
+    margin-bottom: 60px;
   }
 }
 @media(max-width: 1010px) {
@@ -1233,6 +1241,15 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   .chart {
     max-height: 720px!important;
     max-width: 360px!important;
+  }
+}
+@media(max-width: 770px) {
+  #get-in-touch {
+    padding-left: 30px;
+  }
+  #news-feed {
+    padding-left: 30px!important;
+    padding-right: 30px!important;
   }
 }
 @media(max-width: 749px) {

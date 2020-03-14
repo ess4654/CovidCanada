@@ -17,6 +17,10 @@ function GetDataFromLocation(code)
 	}
 	else
 		refreshGraph(code);
+
+	$("#news-bin").html("");
+	$("#news-header").html(`News For ${ProvinceNames[code]} Regarding Covid-19`);
+	GetNewsByRegion(code);
 }
 
 var WikiResponse = function (response) {
