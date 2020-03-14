@@ -1,4 +1,11 @@
 function findLineByLeastSquares(values_x, values_y) {
+    while(values_x.length > 0 && values_y[0] == 0)
+    {
+        console.log("pop");
+        values_x.shift();
+        values_y.shift();
+    }
+
     var sum_x = 0;
     var sum_y = 0;
     var sum_xy = 0;
@@ -93,11 +100,14 @@ function addFuture(data, line, future)
     if(timeframe == "Year")
         weeksModifier = 7 * 52;
 
+    var mod = 0;
     for(var i = 0; i<(time * weeksModifier) + ((timeframe=="Month")?(3*time):(0)); i++)
     {
         start = start.add(1, "Day");
         var pos = start.format("MMMM D, YYYY").toString();
-        data[pos] = Math.round(X * parseFloat(slope) + parseFloat(b));
+        var num = Math.round(X * parseFloat(slope) + parseFloat(b));
+        mod = (num < 0 && mod == 0) ? Math.abs(num):mod;
+        data[pos] = num + mod;
         X++;
     }
 
