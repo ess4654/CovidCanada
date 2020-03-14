@@ -6,7 +6,7 @@ var provinceByCode = {
 	"ON":{"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury"]},
 	"QC":{"CBC":["canada-montreal"]},
 	"NB":{"CBC":["canada-newbrunswick"]},
-	"PEI":{"CBC":["canada-pei"]},
+	"PE":{"CBC":["canada-pei"]},
 	"NS":{"CBC":["canada-novascotia"]},
 	"NF":{"CBC":["canada-newfoundland"]},
 	"NV":{"CBC":["canada-north"]},
@@ -74,6 +74,9 @@ function CBCNewsGet(action, callback)
 
 	//FEED 2 JSON
 	//var url_request = "https://feed2json.org/convert?url=https%3A%2F%2Fwww.cbc.ca%2Fcmlink%2Frss-" + action + "?format=json&callback=" + callback;
+
+	//SEND RSS GET JSON
+	//var url_request = "https://send-rss-get-json.herokuapp.com/convert/?u=https%3A%2F%2Fwww.cbc.ca%2Fcmlink%2Frss-" + action + "?format=jsonp&callback=" + callback;
 
 	var scriptTag = document.createElement("script"); // Dynamically create a "script" tag
 	scriptTag.src = url_request; // Point to the query string

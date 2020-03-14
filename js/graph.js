@@ -10,7 +10,7 @@ var ProvinceNames = {
 	"ON":"Ontario",
 	"QC":"Quebec",
 	"NB":"New Brunswick",
-	"PEI":"Prince Edward Island",
+	"PE":"Prince Edward Island",
 	"NS":"Nova Scotia",
 	"NF":"New Found Land & Labrador",
 	"NV":"Nunavut",

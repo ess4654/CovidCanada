@@ -1,6 +1,6 @@
 var data;
 var CODE;
-var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PEI", "NS", "NF", "NV", "NT", "YU"];
+var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PE", "NS", "NF", "NV", "NT", "YU"];
 
 function GetLocation(code)
 {
@@ -36,7 +36,7 @@ function parseData(data, callback)
 	var result = getProvinces(data);
 	var dates = getDates(data);
 	result = getCasesPerDay(result, dates, data);
-	if(callback != null)
+	if(callback != null && result.length > 0)
 		callback(result);
 }
 
@@ -84,6 +84,11 @@ function getCasesPerDay(result, dates, data)
 		skip = 0;
 		for(var x = 1; x<=result.length+skip; x++)
 		{
+			if(data[dates[i] + x] == undefined)
+			{
+				skip++;
+				continue;
+			}
 			if(data[dates[i] + x][0] != '|')
 			{
 				skip++;
@@ -119,7 +124,7 @@ function getDates(data)
 	var ret = [];
 	for(var i = 10; i<data.length; i++){
 		//console.log(contains(data[i], [", 2020"]));
-		if(contains(data[i], [", 2020"]) === 0)
+		if(contains(data[i], [", 2020"]) === 0 && contains(data[i], ["{{abbr"]) === 0)
 			ret.push(i);
 	}
 	return ret;
@@ -136,16 +141,15 @@ function getProvinces(data)
 	}
 	pos--;
 	var num = 0;
-	while( (data[pos] != "" || data[pos] != "|-") && pos<data.length )
+	for(var X = pos; X<data.length; X++)
 	{
-		if(data[pos] == "|-") break;
-		var p = contains(data[pos], provinceList);
+		if(data[X] == "" || data[X] == "|-") break;
+		var p = contains(data[X], provinceList);
 		if(p === 0 || p) {
 			if(list[num] == null)
 				list[num] = {"code":provinceList[p]};
 			num++;
 		}		
-		pos++;
 	}
 	list["length"] = num;
 	return list;
