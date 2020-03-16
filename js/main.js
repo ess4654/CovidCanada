@@ -154,7 +154,29 @@
 		burgerMenu();
 		mobileMenuOutsideClick();
 		sliderMain();
-		document.getElementById('CA').click();
+		var location = window.location.href.split("?");
+
+		if(location.length == 1)
+			document.getElementById('CA').click();
+		else {
+			var URI = location[1].split("&");
+			var keys = [];
+			var values = [];
+			for(var i = 0; i<URI.length; i++)
+			{
+				var det = URI[i].split("=");
+				keys.push(det[0]);
+				values.push(det[1]);
+			}
+
+			for(var j = 0; j<keys.length; j++)
+			{
+				if(keys[j] == "p")
+				{
+					document.getElementById(values[j]).click();
+				}
+			}
+		}
 
 		$($(".flex-control-nav.flex-control-paging a")[0]).attr("data-toggle", "tooltip");
 		$($(".flex-control-nav.flex-control-paging a")[1]).attr("data-toggle", "tooltip");

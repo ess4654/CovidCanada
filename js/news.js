@@ -1,18 +1,74 @@
 var provinceByCode = {
-	"AB":{"CBC":["canada-calgary", "canada-edmonton"], "CTV":[["calgary.ctvnews.ca","ctv-news-calgary"],["edmonton.ctvnews.ca","ctv-news-edmonton"]]},
-	"BC":{"CBC":["canada-britishcolumbia", "canada-kamloops"], "CTV":[["bc.ctvnews.ca","ctv-news-vancouver"],["vancouverisland.ctvnews.ca","ctv-vancouver-island-latest-news"]]},
-	"SK":{"CBC":["canada-saskatchewan", "canada-saskatoon"], "CTV":[["regina.ctvnews.ca","ctv-news-regina"],["saskatoon.ctvnews.ca","ctv-news-saskatoon"]]},
-	"MB":{"CBC":["canada-manitoba"], "CTV":[["winnipeg.ctvnews.ca","ctv-news-winnipeg"]]},
-	"ON":{"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury", "canada-windsor", "canada-thunderbay", "canada-london"], "CTV":[["ottawa.ctvnews.ca","ctv-news-ottawa"],["toronto.ctvnews.ca","ctv-news-toronto"]]},
-	"QC":{"CBC":["canada-montreal"], "CTV":[["montreal.ctvnews.ca","ctv-news-montreal"]]},
-	"NB":{"CBC":["canada-newbrunswick"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
-	"PE":{"CBC":["canada-pei"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
-	"NS":{"CBC":["canada-novascotia"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
-	"NL":{"CBC":["canada-newfoundland"], "CTV":[]},
-	"NV":{"CBC":["canada-north"], "CTV":[]},
-	"NT":{"CBC":["canada-north"], "CTV":[]},
-	"YU":{"CBC":["canada-north"], "CTV":[]},
-	"CA":{"CBC":["canada", "health", "topstories"], "CTV":[["www.ctvnews.ca","ctvnews-ca-top-stories-public-rss"],["www.ctvnews.ca","ctvnews-ca-canada-public-rss-1.822284"],["www.ctvnews.ca","ctvnews-ca-health-public-rss-1.822299"]]}
+	"AB":{
+		"CBC":["canada-calgary", "canada-edmonton"], 
+		"CTV":[["calgary.ctvnews.ca","ctv-news-calgary"],["edmonton.ctvnews.ca","ctv-news-edmonton"]],
+		"GLOBAL":[]
+	},
+	"BC":{
+		"CBC":["canada-britishcolumbia", "canada-kamloops"], 
+		"CTV":[["bc.ctvnews.ca","ctv-news-vancouver"],["vancouverisland.ctvnews.ca","ctv-vancouver-island-latest-news"]],
+		"GLOBAL":[]
+	},
+	"SK":{
+		"CBC":["canada-saskatchewan", "canada-saskatoon"], 
+		"CTV":[["regina.ctvnews.ca","ctv-news-regina"],["saskatoon.ctvnews.ca","ctv-news-saskatoon"]],
+		"GLOBAL":[]
+	},
+	"MB":{
+		"CBC":["canada-manitoba"], 
+		"CTV":[["winnipeg.ctvnews.ca","ctv-news-winnipeg"]],
+		"GLOBAL":[]
+	},
+	"ON":{
+		"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury", "canada-windsor", "canada-thunderbay", "canada-london"], 
+		"CTV":[["ottawa.ctvnews.ca","ctv-news-ottawa"],["toronto.ctvnews.ca","ctv-news-toronto"]],
+		"GLOBAL":[]
+	},
+	"QC":{
+		"CBC":["canada-montreal"], 
+		"CTV":[["montreal.ctvnews.ca","ctv-news-montreal"]],
+		"GLOBAL":[]
+	},
+	"NB":{
+		"CBC":["canada-newbrunswick"], 
+		"CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]],
+		"GLOBAL":[]
+	},
+	"PE":{
+		"CBC":["canada-pei"], 
+		"CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]],
+		"GLOBAL":[]
+	},
+	"NS":{
+		"CBC":["canada-novascotia"], 
+		"CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]],
+		"GLOBAL":[]
+	},
+	"NL":{
+		"CBC":["canada-newfoundland"], 
+		"CTV":[],
+		"GLOBAL":[]
+	},
+	"NV":{
+		"CBC":["canada-north"], 
+		"CTV":[],
+		"GLOBAL":[]
+	},
+	"NT":{
+		"CBC":["canada-north"], 
+		"CTV":[],
+		"GLOBAL":[]
+	},
+	"YU":{
+		"CBC":["canada-north"], 
+		"CTV":[],
+		"GLOBAL":[]
+	},
+	"CA":{
+		"CBC":["canada", "health", "topstories"], 
+		"CTV":[["www.ctvnews.ca","ctvnews-ca-top-stories-public-rss"],["www.ctvnews.ca","ctvnews-ca-canada-public-rss-1.822284"],["www.ctvnews.ca","ctvnews-ca-health-public-rss-1.822299"]],
+		"GLOBAL":[]
+	}
 };
 
 var filtered_words = [
