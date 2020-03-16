@@ -1,6 +1,6 @@
 var data;
 var CODE;
-var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PE", "NS", "NF", "NV", "NT", "YU"];
+var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PE", "NS", "NL", "NV", "NT", "YU"];
 
 function GetLocation(code)
 {
@@ -16,7 +16,8 @@ function GetDataFromLocation(code)
 		WikiGet("action=parse&page=Template:2019–20_coronavirus_pandemic_data/Canada_medical_cases&prop=wikitext&format=json","WikiResponse");
 	}
 	else
-		refreshGraph(code);
+		refreshGraph(code, function(){
+		});
 
 	$("#news-bin").html("");
 	$("#news-header").html(`News For ${ProvinceNames[code]} Regarding Covid-19`);
@@ -26,7 +27,8 @@ function GetDataFromLocation(code)
 var WikiResponse = function (response) {
     data = parseData(response, function(data){
     	updateGraph(data);
-    	refreshGraph(CODE);
+    	refreshGraph(CODE, function() {
+    	});
     });
 };
 

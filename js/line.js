@@ -1,10 +1,19 @@
 function findLineByLeastSquares(values_x, values_y) {
+    //Remove all data before first case reported
     while(values_x.length > 0 && values_y[0] == 0)
     {
-        console.log("pop");
+        //console.log("pop");
         values_x.shift();
         values_y.shift();
     }
+
+    //Get the average for the last 7 days
+    var BAR = 0;
+    for(var j = 0; j < 7; j++)
+    {
+        BAR += values_y[values_y.length-1-j];
+    }
+    BAR = parseInt(BAR/7);
 
     var sum_x = 0;
     var sum_y = 0;
@@ -66,7 +75,8 @@ function findLineByLeastSquares(values_x, values_y) {
 
     //R2 = Math.pow((count*sum_xy - sum_x*sum_y)/Math.sqrt((count*sum_xx-sum_x*sum_x)*(count*sum_yy-sum_y*sum_y)),2);
     //return [result_values_x, result_values_y];
-    return [m, b];
+    var MUX = 2.05;
+    return [m*MUX, b + BAR];
 }
 
 function graphify(data)

@@ -2,6 +2,8 @@ var caseData;
 var DATA;
 var T;
 var FUTURE;
+var FOCUS = 1;
+var TIMEFRAME = 0;
 var ProvinceNames = {
 	"AB":"Alberta",
 	"BC":"British Columbia",
@@ -12,7 +14,7 @@ var ProvinceNames = {
 	"NB":"New Brunswick",
 	"PE":"Prince Edward Island",
 	"NS":"Nova Scotia",
-	"NF":"New Found Land & Labrador",
+	"NL":"New Found Land & Labrador",
 	"NV":"Nunavut",
 	"NT":"Northwest Territories",
 	"YU":"Yukon",
@@ -20,7 +22,7 @@ var ProvinceNames = {
 };
 
 
-function refreshGraph(code)
+function refreshGraph(code, callback)
 {
 	if(caseData == null) return;
 	switch(code)
@@ -32,6 +34,9 @@ function refreshGraph(code)
 			diplayGraph(getDataFromCode(code));
 			break;
 	}
+
+	if(callback != null)
+		callback();
 }
 
 function getDataFromCode(code)
@@ -74,8 +79,20 @@ function diplayGraph(data)
 	DATA = data;
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[1]).addClass("active");
-	T = 0;
-	createChart(data, 0, FUTURE);
+
+	if(TIMEFRAME == 0) {
+		$(".chart-controls li.active").removeClass("active");
+		$($(".chart-controls li")[1]).addClass("active");
+		T = 0;
+		createChart(data, 0, FUTURE);
+	} else
+	{
+		$(".chart-controls li.active").removeClass("active");
+		$($(".chart-controls li")[0]).addClass("active");
+		T = "day";
+		createChart(data, "day", FUTURE);
+	}
+	
 }
 
 function parseKeypair(data)
@@ -412,7 +429,7 @@ function createChart(data, time, future)
 	    data: {
 	        labels: dates,
 	        datasets: [{
-	            label: '# of Confirmed Cases '+timeDisplay+' in ' + Location,
+	            label: '# of Confirmed Cases Per Week in ' + Location,
 	            data: val,
 	            backgroundColor: bg_color,
 	            borderColor: outline_color,
@@ -422,7 +439,7 @@ function createChart(data, time, future)
 	    options: {
 	    	title: {
 	            display: true,
-	            text: '# of Confirmed Cases '+timeDisplay+' in ' + Location,
+	            text: '# of Confirmed Cases Per Week in ' + Location,
 	            fontSize: 18,
 	            fontColor: 'rgba(225, 225, 225, 1.0)'
 	        },
@@ -461,6 +478,19 @@ function createChart(data, time, future)
 		totalCountCases = totalCountCases[key2[key2.length-1]];
 		$(".total-cases").html(`Total ${(future!=null)?("Estimated Cases "):("")}Cases${(future!=null)?(` in ${future[0]} ${future[1]}${(future[0]>1)?("s"):("")} `):("")}: ${totalCountCases}`);
 	}
+
+	if(future == null && TIMEFRAME == time) {
+		setTimeout(function() {
+			if(FOCUS == 0)
+			{
+				$($(".chart-controls li")[0]).html("Per Week");
+			} else {
+				$($(".chart-controls li")[0]).html("Per Day");
+			}
+			$($(".flex-control-nav.flex-control-paging a")[FOCUS]).click();
+		}, 500);
+	}
+	//TIMEFRAME = time;
 }
 
 function updateGraph(data)
@@ -477,6 +507,7 @@ function swapview(pos)
 		$($(".chart-controls li")[0]).html("Per Day");
 	}
 	$($(".flex-control-nav.flex-control-paging a")[pos]).click();
+	FOCUS = pos;
 }
 
 function perDayGraph()
@@ -484,6 +515,7 @@ function perDayGraph()
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[0]).addClass("active");
 	T = "day";
+	TIMEFRAME = T;
 	createChart(DATA, "day", FUTURE);
 }
 
@@ -492,6 +524,7 @@ function totalGraph()
 	$(".chart-controls li.active").removeClass("active");
 	$($(".chart-controls li")[1]).addClass("active");
 	T = 0;
+	TIMEFRAME = T;
 	createChart(DATA, 0, FUTURE);
 }
 

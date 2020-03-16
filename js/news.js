@@ -8,7 +8,7 @@ var provinceByCode = {
 	"NB":{"CBC":["canada-newbrunswick"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
 	"PE":{"CBC":["canada-pei"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
 	"NS":{"CBC":["canada-novascotia"], "CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]]},
-	"NF":{"CBC":["canada-newfoundland"], "CTV":[]},
+	"NL":{"CBC":["canada-newfoundland"], "CTV":[]},
 	"NV":{"CBC":["canada-north"], "CTV":[]},
 	"NT":{"CBC":["canada-north"], "CTV":[]},
 	"YU":{"CBC":["canada-north"], "CTV":[]},
