@@ -71,6 +71,8 @@ var provinceByCode = {
 	}
 };
 
+var Mobile;
+
 var filtered_words = [
 	'Coronavirus', 'coronavirus', 'CORONAVIRUS',
 	'COVID-19', 'covid-19', 'covid', 'Covid', 'COVID', 'Covid-19',
@@ -211,7 +213,7 @@ function loadNews()
 				description = filterDescription("<p>" + story.description + "</p>");
 			}
 
-			var injectHTML = `<div class="col-md-3 col-sm-6 col-padding animate-box" data-animate-effect="fadeInLeft" style="opacity:1">`;
+			var injectHTML = `<div class="col-md-3 col-sm-6 col-padding animate-box news-article" data-animate-effect="fadeInLeft" style="opacity:1">`;
 			injectHTML +=	`<div class="blog-entry">`;
 			injectHTML +=		`<a href="${story.link}" class="blog-img" target="_blank"><img src="${thumbnail}"></a>`;
 			injectHTML +=		`<div class="desc">`;
@@ -228,6 +230,11 @@ function loadNews()
 			written.push(story.link);
 		}
 	});
+
+	if(Mobile)
+	{
+		$('.news-article').css("min-width","50%");
+	}
 }
 
 function filterDescription(desc)

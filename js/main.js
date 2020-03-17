@@ -30,9 +30,11 @@
 			$(window).resize(function(){
 				$('.js-fullheight').css('height', $(window).height());
 			});
+			Mobile = false;
 			console.log("Not Mobile");
 		} else {
 			$('.chart').css("margin-top","-200px");
+			Mobile = true;
 			console.log("Mobile");
 		}
 
