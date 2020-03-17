@@ -230,11 +230,11 @@ function loadNews()
 	{
 		case "Most Recent":
 			//Sort most recent
-			STORIES_BIN.sort(function(a, b){return moment(a.pubDate).isBefore(moment(b.pubDate));});
+			STORIES_BIN.sort(function(a, b){return (moment(a.pubDate).isBefore(moment(b.pubDate)) == true) ? 1:-1;});
 			break;
 		case "Oldest":
 			//Sort oldest
-			STORIES_BIN.sort(function(a, b){return moment(b.pubDate).isBefore(moment(a.pubDate));});
+			STORIES_BIN.sort(function(a, b){return (moment(b.pubDate).isBefore(moment(a.pubDate)) == true) ? 1:-1;});
 			break;
 		default:
 			//Sort Random
