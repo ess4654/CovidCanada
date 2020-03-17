@@ -110,7 +110,7 @@
 				</ul>
 
 				<div class="fh5co-footer">
-					<p><small>&copy; 2020 Evan Svendsen. All Rights Reserved. Data Pulled Live from <a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Canada" target="_blank">Wikipedia</a>. New Updates pulled live from <a href="https://www.cbc.ca/" target="_blank">CBC</a> and <a href="https://www.ctv.ca" target="_blank">CTV</a>. Webapp v1.16</span></small></p>
+					<p><small>&copy; 2020 Evan Svendsen. All Rights Reserved. Data Pulled Live from <a href="https://en.wikipedia.org/wiki/2020_coronavirus_pandemic_in_Canada" target="_blank">Wikipedia</a>. New Updates pulled live from <a href="https://www.cbc.ca/" target="_blank">CBC</a> and <a href="https://www.ctv.ca" target="_blank">CTV</a>. Webapp v1.17</span></small></p>
 					<ul>
 						<li><a href="https://www.facebook.com/evan.svendsen.3" target="_blank"><i class="icon-facebook2"></i></a></li>
 						<li><a href="https://www.youtube.com/channel/UCUa7jP57hZsC7ZjBIDN9xRA?sub_confirmation=1" target="_blank"><i class="icon-youtube2"></i></a></li>
@@ -200,6 +200,9 @@
 						<a class="dropdown-item" href="javascript:void(0);" onclick="Estimate('1-Year');">1 Year</a>
 					</div>
 				</div>
+				<div id="donate-button">
+					<script type='text/javascript' src='js/donate.js'></script><script type='text/javascript'>kofiwidget2.init('Donate', '#29abe0', 'C0C11IF0V');kofiwidget2.draw();</script> 
+				</div>
 			</div>
 			</div>
 
@@ -223,7 +226,18 @@
 
 			<!-- NEWS FEED -->
 			<div id="news-feed" class="fh5co-narrow-content">
-				<h2 id="news-header" class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">Recent Blog</h2>
+				<h2 id="news-header" class="fh5co-heading animate-box" data-animate-effect="fadeInLeft">News</h2>
+				<div id="news-sorting-button" class="btn-group  animate-box">
+					<h5 style="padding-right: 15px;margin: 0 auto;padding-top: 8px;">Sort By:</h5>
+					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Random
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="javascript:void(0);" onclick="SortNews('Random');">Random</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="SortNews('Most Recent');">Most Recent</a>
+						<a class="dropdown-item" href="javascript:void(0);" onclick="SortNews('Oldest');">Oldest</a>
+					</div>
+				</div>
 				<div id="news-bin" class="row row-bottom-padded-md">
 				</div>
 			</div>

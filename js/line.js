@@ -75,7 +75,7 @@ function findLineByLeastSquares(values_x, values_y) {
 
     //R2 = Math.pow((count*sum_xy - sum_x*sum_y)/Math.sqrt((count*sum_xx-sum_x*sum_x)*(count*sum_yy-sum_y*sum_y)),2);
     //return [result_values_x, result_values_y];
-    var MUX = 2.05;
+    var MUX = 3.00;
     return [m*MUX, b + BAR];
 }
 

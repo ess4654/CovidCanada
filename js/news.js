@@ -2,37 +2,37 @@ var provinceByCode = {
 	"AB":{
 		"CBC":["canada-calgary", "canada-edmonton"], 
 		"CTV":[["calgary.ctvnews.ca","ctv-news-calgary"],["edmonton.ctvnews.ca","ctv-news-edmonton"]],
-		"GLOBAL":[]
+		"GLOBAL":["lethbridge", "edmonton", "calgary"]
 	},
 	"BC":{
 		"CBC":["canada-britishcolumbia", "canada-kamloops"], 
 		"CTV":[["bc.ctvnews.ca","ctv-news-vancouver"],["vancouverisland.ctvnews.ca","ctv-vancouver-island-latest-news"]],
-		"GLOBAL":[]
+		"GLOBAL":["bc", "okanagan"]
 	},
 	"SK":{
 		"CBC":["canada-saskatchewan", "canada-saskatoon"], 
 		"CTV":[["regina.ctvnews.ca","ctv-news-regina"],["saskatoon.ctvnews.ca","ctv-news-saskatoon"]],
-		"GLOBAL":[]
+		"GLOBAL":["saskatoon", "regina"]
 	},
 	"MB":{
 		"CBC":["canada-manitoba"], 
 		"CTV":[["winnipeg.ctvnews.ca","ctv-news-winnipeg"]],
-		"GLOBAL":[]
+		"GLOBAL":["winnipeg"]
 	},
 	"ON":{
 		"CBC":["canada-toronto", "canada-kitchenerwaterloo", "canada-sudbury", "canada-windsor", "canada-thunderbay", "canada-london"], 
 		"CTV":[["ottawa.ctvnews.ca","ctv-news-ottawa"],["toronto.ctvnews.ca","ctv-news-toronto"]],
-		"GLOBAL":[]
+		"GLOBAL":["toronto"]
 	},
 	"QC":{
 		"CBC":["canada-montreal"], 
 		"CTV":[["montreal.ctvnews.ca","ctv-news-montreal"]],
-		"GLOBAL":[]
+		"GLOBAL":["montreal"]
 	},
 	"NB":{
 		"CBC":["canada-newbrunswick"], 
 		"CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]],
-		"GLOBAL":[]
+		"GLOBAL":["new-brunswick"]
 	},
 	"PE":{
 		"CBC":["canada-pei"], 
@@ -42,7 +42,7 @@ var provinceByCode = {
 	"NS":{
 		"CBC":["canada-novascotia"], 
 		"CTV":[["atlantic.ctvnews.ca","ctv-news-atlantic-public-rss"]],
-		"GLOBAL":[]
+		"GLOBAL":["halifax"]
 	},
 	"NL":{
 		"CBC":["canada-newfoundland"], 
@@ -67,11 +67,12 @@ var provinceByCode = {
 	"CA":{
 		"CBC":["canada", "health", "topstories"], 
 		"CTV":[["www.ctvnews.ca","ctvnews-ca-top-stories-public-rss"],["www.ctvnews.ca","ctvnews-ca-canada-public-rss-1.822284"],["www.ctvnews.ca","ctvnews-ca-health-public-rss-1.822299"]],
-		"GLOBAL":[]
+		"GLOBAL":["canada", "health"]
 	}
 };
 
 var Mobile;
+var SortingNews;
 
 var filtered_words = [
 	'Coronavirus', 'coronavirus', 'CORONAVIRUS',
@@ -95,7 +96,12 @@ var filtered_words = [
 	'containment area', 'Containment Area', 'CONTAINMENT AREA',
 	'screening', 'Screening', 'SCREENING',
 	'large gatherings', 'LARGE GATHERINGS', 'Large Gatherings',
-	'lockdown', 'LOCKDOWN', 'Lockdown'
+	'lockdown', 'LOCKDOWN', 'Lockdown',
+	'panic buying', 'PANIC BUYING', 'Panic buying', 'Panic Buying',
+	'closes borders', 'closed borders', 'Closes boarders', 'Closed boarders',
+	'chief medical officer', 'CHIEF MEDICAL OFFICER', 'Chief Medical Officer',
+	'50 people', '50 PEOPLE', '50 People',
+	'250 people', '250 PEOPLE', '250 People'
 ];
 
 var banned_words = [
@@ -118,24 +124,25 @@ var RSSRecieved;
 
 function GetNewsByRegion(code)
 {
-	STORIES = new Set();
 	STORIES_BIN = [];
 	RSSRecieved = 0;
 	var CBCNews = provinceByCode[code]["CBC"];
 	var CTVNews = provinceByCode[code]["CTV"];
-	RSSRequest = CBCNews.length + CTVNews.length;
+	var GLOBALNews = provinceByCode[code]["GLOBAL"];
+	RSSRequest = CBCNews.length + CTVNews.length + GLOBALNews.length;
 	for(var i = 0; i<CBCNews.length; i++)
 		CBCNewsGet(CBCNews[i], "CBCNewsCallback");
 	for(var j = 0; j<CTVNews.length; j++)
 		CTVNewsGet(CTVNews[j], "CTVNewsCallback");
-	//CTVNewsGet(["www.ctvnews.ca","ctvnews-ca-health-public-rss-1.822299"], "CTVNewsCallback");
+	for(var k = 0; k<GLOBALNews.length; k++)
+		GLOBALNewsGet(GLOBALNews[k], "GLOBALNewsCallback");
+	//GLOBALNewsGet("health", "GLOBALNewsCallback");
 }
 
 function CBCNewsCallback(response)
 {
 	var stories = response.items;
 
-	shuffle(stories);
 	for(var i = 0; i<stories.length; i++)
 	{
 		if(!(contains(stories[i].title, filtered_words) === false) &&
@@ -152,7 +159,22 @@ function CTVNewsCallback(response)
 {
 	var stories = response.items;
 
-	shuffle(stories);
+	for(var i = 0; i<stories.length; i++)
+	{
+		if(!(contains(stories[i].title, filtered_words) === false) &&
+			contains(stories[i].title, banned_words) === false)
+			STORIES_BIN.push(stories[i]);
+	}
+
+	RSSRecieved++;
+	if(RSSRecieved >= RSSRequest)
+		loadNews();
+}
+
+function GLOBALNewsCallback(response)
+{
+	var stories = response.items;
+
 	for(var i = 0; i<stories.length; i++)
 	{
 		if(!(contains(stories[i].title, filtered_words) === false) &&
@@ -191,12 +213,39 @@ function CTVNewsGet(action, callback)
 	$("#NewsGet").html(scriptTag);
 }
 
+function GLOBALNewsGet(action, callback)
+{
+	//RSS2JSON
+	var url_request = "https://api.rss2json.com/v1/api.json?api_key=vpdgybikmtdoq3seyblntqkjajn6go3n1mdsxiak&rss_url=https%3A%2F%2Fglobalnews.ca%2F"+action+"%2Ffeed?format=json&callback=" + callback;
+
+	var scriptTag = document.createElement("script"); // Dynamically create a "script" tag
+	scriptTag.src = url_request; // Point to the query string
+	$("#NewsGet").html(scriptTag);
+}
+
 function loadNews()
 {
-	shuffle(STORIES_BIN);
+	$("#news-bin").html("");
+	switch(SortingNews)
+	{
+		case "Most Recent":
+			//Sort most recent
+			STORIES_BIN.sort(function(a, b){return moment(a.pubDate).isBefore(moment(b.pubDate));});
+			break;
+		case "Oldest":
+			//Sort oldest
+			STORIES_BIN.sort(function(a, b){return moment(b.pubDate).isBefore(moment(a.pubDate));});
+			break;
+		default:
+			//Sort Random
+			shuffle(STORIES_BIN);
+			break;
+	}
+	
+	STORIES = new Set();
 	for(var i = 0; i<STORIES_BIN.length; i++)
 		STORIES.add(STORIES_BIN[i]);
-	
+
 	//console.log(STORIES);
 	//console.log('Sucess');
 	var written = [];
@@ -208,7 +257,7 @@ function loadNews()
 			var description = story.description.substr(descriptionStart, story.description.length-descriptionStart);
 			description = filterDescription(description);
 			var thumbnail = story.thumbnail;
-			if(thumbnail == "" || thumbnail == null) { //CTV
+			if(thumbnail == "" || thumbnail == null || contains(thumbnail, ["globalnews"]) === 0) { //CTV
 				thumbnail = story.enclosure.link;
 				description = filterDescription("<p>" + story.description + "</p>");
 			}
@@ -233,8 +282,14 @@ function loadNews()
 
 	if(Mobile)
 	{
-		$('.news-article').css("min-width","50%");
+		if($(window).width() > 450)
+			$('.news-article').css("min-width","50%");
+
+		else
+			$('.news-article').css("min-width","100%");
 	}
+
+	//$("#news-sorting-button").css("display","unset");
 }
 
 function filterDescription(desc)
@@ -249,4 +304,11 @@ function filterDescription(desc)
 		temp = temp.substring(0,300) + "...";
 	//console.log(temp);
 	return temp;
+}
+
+function SortNews(type)
+{
+	SortingNews = type;
+	loadNews();
+	$("#news-sorting-button .btn").html(type);
 }

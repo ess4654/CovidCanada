@@ -1343,4 +1343,19 @@ body.offcanvas #fh5co-main, body.offcanvas .fh5co-nav-toggle {
   top: 20px;
 }
 
+#donate-button {
+  right: 0px;
+  position: relative;
+  top: 15px;
+  z-index: -1;
+}
+
+#news-sorting-button {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  z-index: 2;
+  /*display: none;*/
+}
+
 /*# sourceMappingURL=style.css.map */
