@@ -108,7 +108,17 @@ function getCasesPerDay(result, dates, data)
 				}
 			}
 			else {
-				z = 0;
+				if(n[0].length > 1)
+				{
+					var m = parseInt(n[0].substr(1, n[0].length-1));
+					if(isNaN(m)) {
+					z = 0;
+					}
+					else {
+						z = m;
+					}
+				} else
+					z = 0;
 			}
 			
 			var date = formatDate(data[dates[i]]);
