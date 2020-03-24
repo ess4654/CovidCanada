@@ -15,9 +15,9 @@ var ProvinceNames = {
 	"PE":"Prince Edward Island",
 	"NS":"Nova Scotia",
 	"NL":"New Found Land & Labrador",
-	"NV":"Nunavut",
+	"NU":"Nunavut",
 	"NT":"Northwest Territories",
-	"YU":"Yukon",
+	"YT":"Yukon",
 	"CA":"Canada"
 };
 

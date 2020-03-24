@@ -49,17 +49,17 @@ var provinceByCode = {
 		"CTV":[],
 		"GLOBAL":[]
 	},
-	"NV":{
-		"CBC":["canada-north"], 
-		"CTV":[],
-		"GLOBAL":[]
-	},
 	"NT":{
 		"CBC":["canada-north"], 
 		"CTV":[],
 		"GLOBAL":[]
 	},
-	"YU":{
+	"NU":{
+		"CBC":["canada-north"], 
+		"CTV":[],
+		"GLOBAL":[]
+	},
+	"YT":{
 		"CBC":["canada-north"], 
 		"CTV":[],
 		"GLOBAL":[]

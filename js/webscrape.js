@@ -1,6 +1,6 @@
 var data;
 var CODE;
-var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PE", "NS", "NL", "NV", "NT", "YU"];
+var provinceList = ["BC", "AB", "SK", "MB", "ON", "QC", "NB", "PE", "NS", "NL", "NU", "NT", "YT"];
 
 function GetLocation(code)
 {
@@ -99,9 +99,29 @@ function getCasesPerDay(result, dates, data)
 			var n = data[dates[i] + x].split(" ");
 			var z;
 			if(n.length > 1) {
-				var m = parseInt(n[1]);
+				var m = parseInt(n[1].replace("−", "-"));
 				if(isNaN(m)) {
-					z = 0;
+					if(contains(n[0], ["<ref"]) === 0)
+					{
+						var a = 1;
+						for(var o = 1; o<n[0].length; o++)
+						{
+							if(n[0][o] == '<')
+							{
+								a = o;
+								break;
+							}
+						}
+						m = parseInt(n[0].substring(1, a).replace("−", "-"));
+						if(isNaN(m)) {
+							z = 0;
+						}
+						else {
+							z = m;
+						}
+					} else {
+						z = 0;
+					}
 				}
 				else {
 					z = m;
@@ -110,9 +130,29 @@ function getCasesPerDay(result, dates, data)
 			else {
 				if(n[0].length > 1)
 				{
-					var m = parseInt(n[0].substr(1, n[0].length-1));
+					var m = parseInt(n[0].substr(1, n[0].length-1).replace("−", "-"));
 					if(isNaN(m)) {
-					z = 0;
+						if(contains(n[0], ["<ref"]) === 0)
+						{
+							var a = 1;
+							for(var o = 1; o<n[0].length; o++)
+							{
+								if(n[0][o] == '<')
+								{
+									a = o;
+									break;
+								}
+							}
+							m = parseInt(n[0].substring(1, a).replace("−", "-"));
+							if(isNaN(m)) {
+								z = 0;
+							}
+							else {
+								z = m;
+							}
+						} else {
+							z = 0;
+						}
 					}
 					else {
 						z = m;
