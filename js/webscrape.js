@@ -96,6 +96,8 @@ function getCasesPerDay(result, dates, data)
 				skip++;
 				continue;
 			}
+			if(data[dates[i] + x] == "|13 ")
+				data[dates[i] + x] = "| 13";
 			var n = data[dates[i] + x].split(" ");
 			var z;
 			if(n.length > 1) {
@@ -176,7 +178,8 @@ function getDates(data)
 	var ret = [];
 	for(var i = 10; i<data.length; i++){
 		//console.log(contains(data[i], [", 2020"]));
-		if(contains(data[i], [", 2020"]) === 0 && contains(data[i], ["{{abbr"]) === 0)
+		if(contains(data[i], [", 2020"]) === 0 &&
+			(contains(data[i], ["{{abbr"]) === 0 || contains(data[i], ["{{Abbr"]) === 0))
 			ret.push(i);
 	}
 	return ret;
